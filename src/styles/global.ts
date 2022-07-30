@@ -53,4 +53,46 @@ export const GlobalStyle = createGlobalStyle`
     cursor: not-allowed; // show picture not-allowed
   }
 
+  // elemento do background atrás do modal, 
+  // feito aqui para ser aplicados a todos os modais da aplicação
+  // usado somente se quiser sobescrever a formatação original do modal
+  .react-modal-overlay {
+    background: rgba(0, 0, 0, 0.5);
+    // sempre fica em cima do viewport
+    position: fixed;
+    
+    // ocupa tela inteira
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    //centralizar
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  // elemento do modal em si
+  // feito aqui para ser aplicados a todos os modais da aplicação
+   // usado somente se quiser sobescrever a formatação original do modal
+  .react-modal-content {
+    width: 100%;
+    max-width: 576px;// no maximo isso, menos ele vai deixar no tamanho de 100% da tela
+    background: var(--background);
+    padding: 3rem;
+    position: relative;// para ter fexibilidade nas posições do botões
+    border-radius: 0.25rem;
+  }
+  .react-modal-close {// botão de fechar o modal
+    position: absolute;
+    right: 1.5rem;
+    top: 1.5rem;
+    border: 0;
+    background: transparent;
+    
+    transition: filter 0.2s;
+    &:hover {
+      filter: brightness(0.8);
+    }
+  }
+
 `
