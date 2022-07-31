@@ -4,6 +4,7 @@ import closeImg from "../../assets/close.svg";
 import incomeImg from "../../assets/income.svg";
 import outcomeImg from "../../assets/outcome.svg";
 import { Container, RadioBox, TransactionTypeContainer } from "./styles";
+import { api } from "../../services/api";
 
 
 interface NewTransactionModalProps {
@@ -24,8 +25,18 @@ export function NewTransactionModal({
     function handleCreateNewTransaction(event: FormEvent) {
         event.preventDefault(); // previnir o evento padrão e não recarregar automaticamente a pagina
     
-        console.log(title, value, category, type);
+        const data = {
+            title,
+            value,
+            category,
+            type,
+          };
+      
+          // post -> usado para inserção
+          api.post("/transactions", data);
       }
+
+     
 
     return(
         <Modal
