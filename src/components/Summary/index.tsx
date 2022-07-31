@@ -9,7 +9,7 @@ import { Container } from "./styles";
 export function Summary() {
     // guardar dados do contexto em uma constante
     // usando contexto toda vez que os dados mudarem automaticamente quem usa o contexto será renderizado
-    const transactions = useContext(TransactionsContext);
+    const {transactions }= useContext(TransactionsContext);
     console.log(transactions)
     
     return (

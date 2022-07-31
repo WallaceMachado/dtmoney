@@ -15,7 +15,7 @@ interface Transaction {
 export function TransactionsTable() {    
    // guardar dados do contexto em uma constante
     // usando contexto toda vez que os dados mudarem automaticamente quem usa o contexto será renderizado
-    const transactions = useContext(TransactionsContext);
+    const {transactions} = useContext(TransactionsContext);
     return (
       <Container>
         <table>
