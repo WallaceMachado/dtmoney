@@ -1,10 +1,16 @@
+import { useContext } from "react";
 import incomeImg from "../../assets/income.svg";
 import outcomeImg from "../../assets/outcome.svg";
 import totalImg from "../../assets/total.svg";
+import { TransactionsContext } from "../../TransactionsContext";
 
 import { Container } from "./styles";
 
 export function Summary() {
+    // guardar dados do contexto em uma constante
+    // usando contexto toda vez que os dados mudarem automaticamente quem usa o contexto será renderizado
+    const data = useContext(TransactionsContext);
+    
     return (
         <Container>
              <div>
