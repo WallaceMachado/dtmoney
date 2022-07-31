@@ -5,7 +5,7 @@ import { Header } from "./components/Header";
 import { NewTransactionModal } from "./components/NewTransactionModal";
 
 import { GlobalStyle } from "./styles/global";
-import { TransactionsContext } from "./TransactionsContext";
+import { TransactionsContext, TransactionsProvider } from "./TransactionsContext";
 
 // acessibilidade -> referenciar o elemento root alertando impossibilidade de acesso aos elementos abaixo do modal
 Modal.setAppElement('#root');
@@ -23,7 +23,7 @@ export function App() {
   }
   // inserir o Context.Provider em volta de todos os componente que usarão o context
   return (
-    <TransactionsContext.Provider value={[]}>
+    <TransactionsProvider>
        <Header onOpenNewTransactionModal={handleOpenNewTransactionModal}/>
        <Dashboard />
        < NewTransactionModal
@@ -31,7 +31,7 @@ export function App() {
           onRequestClose={handleCloseNewTransactionModal}
       />        
        <GlobalStyle />
-    </TransactionsContext.Provider>
+    </TransactionsProvider>
   );
 }
 // remover export default pois exportando assim o nome poderá ser alterado
