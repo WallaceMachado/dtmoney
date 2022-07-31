@@ -22,7 +22,7 @@ type TransactionInput = Omit<Transaction, "id" | "createdAt">;
 
 interface TransactionsContextData {
   transactions: Transaction[];
-  createTransaction: (transaction: TransactionInput) => void;
+  createTransaction: (transaction: TransactionInput) => Promise<void>;
 }
 
  // argumento = valor default []
@@ -39,9 +39,16 @@ interface TransactionsContextData {
       .then((response) => setTransactions(response.data.transactions));
   }, []);
 
-  function createTransaction(transaction: TransactionInput) {
-    // post -> usado para inserção
-    api.post("/transactions", transaction);
+  async function createTransaction(transactionInput: TransactionInput) {
+    const response = await api.post("/transactions", {
+      ...transactionInput,
+      createdAt: new Date(),
+    });
+    const { transaction } = response.data; // salvando os dados de transação que ficam no axios
+
+    // adicionando o novo input ao state de transações
+    // principio da imutabilidade não alteramos diretamente o array e sim criamos um novo a partir do antigo
+    setTransactions([...transactions, transaction]);
   }
 
   // quem providencia os dados do contexto para todos os children

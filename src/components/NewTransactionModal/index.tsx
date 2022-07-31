@@ -25,14 +25,23 @@ export function NewTransactionModal({
 
     // event : formEvent é enviado automaticamente pelo sonSubmit de um form
     // ele recarrega toda a pagina apos submeter os dados
-    function handleCreateNewTransaction(event: FormEvent) {
+   async function handleCreateNewTransaction(event: FormEvent) {
         event.preventDefault(); // previnir o evento padrão e não recarregar automaticamente a pagina
-        createTransaction({
+     await createTransaction({
             title,
             amount,
             category,
             type,
-          });       
+          }); 
+          
+        // restaurar dados do input
+        setTitle('');
+        setAmount(0);
+        setCategory('');
+        setType('deposit');
+
+        // fechar modal após criar transação (async await)
+        onRequestClose();
       }     
 
     return(
