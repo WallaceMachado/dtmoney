@@ -3,9 +3,10 @@ import Modal from "react-modal";// radd react-modal / @types/react-modal
 import { Dashboard } from "./components/Dashboard";
 import { Header } from "./components/Header";
 import { NewTransactionModal } from "./components/NewTransactionModal";
+import { TransactionsProvider } from "./hooks/useTransactions";
 
 import { GlobalStyle } from "./styles/global";
-import { TransactionsContext, TransactionsProvider } from "./TransactionsContext";
+
 
 // acessibilidade -> referenciar o elemento root alertando impossibilidade de acesso aos elementos abaixo do modal
 Modal.setAppElement('#root');

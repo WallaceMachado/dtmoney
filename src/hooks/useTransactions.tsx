@@ -1,5 +1,5 @@
-import { createContext, ReactNode, useEffect, useState } from "react";
-import { api } from "./services/api";
+import { createContext, ReactNode, useContext, useEffect, useState } from "react";
+import { api } from "../services/api";
 
 interface Transaction {
   id: number;
@@ -26,7 +26,7 @@ interface TransactionsContextData {
 }
 
  // argumento = valor default []
- export const TransactionsContext = createContext<TransactionsContextData>({} as TransactionsContextData);
+ const TransactionsContext = createContext<TransactionsContextData>({} as TransactionsContextData);
 
 // recebe todos os children e disponibiliza dados
  export function TransactionsProvider({ children }: TransactionsProviderProps) {
@@ -58,3 +58,10 @@ interface TransactionsContextData {
     </TransactionsContext.Provider>
   );
 }
+
+// todo hooks começa com "use"
+export function useTransactions() {
+  const context = useContext(TransactionsContext);
+
+  return context;
+} 

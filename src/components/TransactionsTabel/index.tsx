@@ -1,6 +1,5 @@
-import { useContext, useEffect, useState } from "react";
-import { api } from "../../services/api";
-import { TransactionsContext } from "../../TransactionsContext";
+import { useTransactions } from "../../hooks/useTransactions";
+
 import { Container } from "./styles";
 
 interface Transaction {
@@ -15,7 +14,7 @@ interface Transaction {
 export function TransactionsTable() {    
    // guardar dados do contexto em uma constante
     // usando contexto toda vez que os dados mudarem automaticamente quem usa o contexto será renderizado
-    const {transactions} = useContext(TransactionsContext);
+    const {transactions} = useTransactions();
     return (
       <Container>
         <table>
