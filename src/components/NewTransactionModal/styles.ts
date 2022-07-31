@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { darken } from "polished"; // yarn add polished
+import { darken, transparentize } from "polished"; // yarn add polished
 
 export const Container = styled.form`
   h2 {
@@ -48,28 +48,46 @@ export const TransactionTypeContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0.5rem;
-  button {
+  
+`;
+
+interface RadioBoxProps {
+    isActive: boolean;
+    activeColor: "green" | "red";
+}
+const colors = {
+    green: "#33cc95",
+    red: "#e52e4d",
+  };
+
+export const RadioBox = styled.button<RadioBoxProps>`
     height: 4rem;
     border: 1px solid #d7d7d7;
     border-radius: 0.25rem;
-    background: transparent;
+
+    // quando coloca uma função ela pega automaticamente as propriedades do componente
+    background: ${(props) =>
+    props.isActive
+      ? transparentize(0.9, colors[props.activeColor])// para deixar somente o background transparente, optacy deixaria o botão todo
+      : "transparent"};
+
     display: flex;
     align-items: center;
     justify-content: center;
     transition: border-color 0.2s;
     // escurece 10% do cinza somente a borda se o usase o filtro iria escurer o botão todo
     &:hover {
-      border-color: ${darken(0.1, "#d7d7d7")}; // necessário instalar add polished
+        border-color: ${darken(0.1, "#d7d7d7")}; // necessário instalar add polished
     }
     img {
-      width: 20px;
-      height: 20px;
+        width: 20px;
+        height: 20px;
     }
     span {
-      display: inline-block;// para dar um margem nele
-      margin-left: 1rem;
-      font-size: 1rem;
-      color: var(--text-title);
+        display: inline-block;// para dar um margem nele
+        margin-left: 1rem;
+        font-size: 1rem;
+        color: var(--text-title);
     }
-  }
-`;
+
+`
